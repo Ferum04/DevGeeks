@@ -27,7 +27,7 @@ export function Landing() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center py-20 px-6">
+      <div className="relative z-10 flex-1 flex flex-col items-center justify-center min-h-[calc(100vh-70px)] py-20 px-6">
         {/* Logo Icon */}
         <div className="mb-8 relative">
           <div
