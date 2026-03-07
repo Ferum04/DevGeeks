@@ -1,8 +1,10 @@
 import { Link, useLocation } from "react-router";
-import { Box, Search, Plus, Bell } from "lucide-react";
+import { Box, Search, Plus, Bell, LogOut } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 export function Header() {
   const location = useLocation();
+  const { user, logout } = useAuth();
 
   return (
     <header
@@ -69,13 +71,38 @@ export function Header() {
               <span className="absolute top-0 right-0 w-2 h-2 rounded-full" style={{ background: '#2F81F7' }}></span>
             </button>
             {/* Avatar Placeholder */}
-            <div
-              className="w-8 h-8 rounded-full border cursor-pointer hover:border-gray-400 transition-colors"
-              style={{
-                background: 'linear-gradient(135deg, #2EA043, #A371F7)',
-                borderColor: '#30363D'
-              }}
-            />
+            {/* Avatar / Logout */}
+            {user ? (
+              <div className="flex items-center gap-4">
+                <span className="text-xs" style={{ color: '#8B949E' }}>
+                  {user.email.split('@')[0]}
+                </span>
+                <button
+                  onClick={logout}
+                  className="hover:text-red-400 transition-colors"
+                  title="Log out"
+                >
+                  <LogOut size={16} />
+                </button>
+                <div
+                  className="w-8 h-8 rounded-full border"
+                  style={{
+                    background: 'linear-gradient(135deg, #A371F7, #58A6FF)',
+                    borderColor: '#30363D'
+                  }}
+                />
+              </div>
+            ) : (
+              <Link to="/register">
+                <div
+                  className="w-8 h-8 rounded-full border cursor-pointer hover:border-gray-400 transition-colors"
+                  style={{
+                    background: 'linear-gradient(135deg, #2EA043, #A371F7)',
+                    borderColor: '#30363D'
+                  }}
+                />
+              </Link>
+            )}
           </div>
         </div>
       )}

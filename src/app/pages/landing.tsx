@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { Terminal, Sparkles } from "lucide-react";
+import { Terminal } from "lucide-react";
 import { Header } from "../components/layout/header";
 import { Footer } from "../components/layout/footer";
 
@@ -39,11 +39,6 @@ export function Landing() {
             style={{ background: '#161B22', border: '1px solid #30363D' }}
           >
             <Terminal size={48} style={{ color: '#2EA043' }} />
-            <Sparkles
-              size={20}
-              className="absolute -top-1 -right-1"
-              style={{ color: '#A371F7' }}
-            />
           </div>
         </div>
 

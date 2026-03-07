@@ -1,13 +1,12 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { Home, ChevronRight, ChevronLeft, Server, HardDrive, Box, Container, Lightbulb } from "lucide-react";
+import { Home, ChevronRight, ChevronLeft, Server, HardDrive, Box } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Header } from "../components/layout/header";
+import { Footer } from "../components/layout/footer";
 const navItems = [
   { path: "/docs/introduction", label: "Introduction", icon: Home },
   { path: "/docs/hardware-selection", label: "Hardware Selection", icon: HardDrive },
   { path: "/docs/proxmox-installation", label: "Proxmox Installation", icon: Server },
-  { path: "/docs/docker-basics", label: "Docker Basics", icon: Container },
-  { path: "/docs/home-assistant", label: "Home Assistant", icon: Lightbulb },
 ];
 
 export function DocsLayout() {
@@ -154,6 +153,7 @@ export function DocsLayout() {
                 )}
               </div>
             </article>
+            <Footer />
           </div>
 
           {/* Right Sidebar - Table of Contents */}
@@ -200,32 +200,6 @@ export function DocsLayout() {
                   Key Concepts
                 </a>
               </div>
-
-              {nextItem && (
-                <div
-                  className="mt-8 p-4 rounded"
-                  style={{
-                    background: '#161B22',
-                    border: '1px solid #30363D'
-                  }}
-                >
-                  <p
-                    className="text-xs font-semibold mb-2"
-                    style={{ color: '#8B949E' }}
-                  >
-                    NEXT LESSON
-                  </p>
-                  <Link
-                    to={nextItem.path}
-                    className="text-sm font-medium transition-colors"
-                    style={{ color: '#A371F7' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#C99EFF'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#A371F7'}
-                  >
-                    {nextItem.label} →
-                  </Link>
-                </div>
-              )}
             </div>
           </aside>
         </main>
