@@ -1,0 +1,18 @@
+{
+    "landing": {
+        "title": "Вітаємо у DevGeeks",
+        "subtitle": "Тут ви можете навчитися створювати власну домашню лабораторію",
+        "getStarted": "Почати"
+    },
+    "header": {
+        "home": "Головна",
+        "docs": "Документація",
+        "searchPlaceholder": "Введіть / для пошуку"
+    },
+    "docs": {
+        "onThisPage": "НА ЦІЙ СТОРІНЦІ",
+        "overview": "Огляд",
+        "gettingStarted": "З чого почати",
+        "keyConcepts": "Ключові концепції"
+    }
+}
