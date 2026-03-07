@@ -39,16 +39,6 @@ export function DocsLayout() {
           }}
         >
           <div className="p-6">
-            <Link to="/" className="flex items-center gap-2 mb-8 group">
-              <Box size={24} style={{ color: '#2EA043' }} />
-              <span
-                className="text-lg font-semibold"
-                style={{ color: '#FFFFFF' }}
-              >
-                DevGeeks
-              </span>
-            </Link>
-
             <nav className="space-y-1">
               {navItems.map((item) => {
                 const Icon = item.icon;

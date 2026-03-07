@@ -3,16 +3,16 @@ import { Box, Github, Twitter, Linkedin } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer 
+    <footer
       className="border-t py-12 px-6 mt-auto text-xs"
-      style={{ 
+      style={{
         background: '#0D1117', // GitHub main background
         borderColor: '#30363D',
         color: '#8B949E' // Subdued text color
       }}
     >
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12 mb-8">
-        
+
         {/* Logo and Brand */}
         <div className="flex flex-col gap-4 max-w-xs">
           <Link to="/" className="flex items-center gap-2">
@@ -40,7 +40,7 @@ export function Footer() {
             <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Hardware</Link>
             <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Software</Link>
           </div>
-          
+
           <div className="flex flex-col gap-3">
             <h3 className="font-semibold mb-1" style={{ color: '#E6EDF3' }}>Platform</h3>
             <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Proxmox</Link>
@@ -60,7 +60,7 @@ export function Footer() {
       </div>
 
       {/* Bottom Legal Section */}
-      <div 
+      <div
         className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center pt-8 border-t gap-4"
         style={{ borderColor: '#21262D' }}
       >

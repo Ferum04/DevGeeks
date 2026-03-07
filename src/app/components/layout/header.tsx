@@ -17,15 +17,21 @@ export function Header() {
     >
       <div className="flex items-center gap-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 group mr-2">
-          <Box
-            size={32}
-            className="transition-colors"
-            style={{ color: '#E6EDF3' }}
-            onMouseEnter={(e) => e.currentTarget.style.color = '#8B949E'}
-            onMouseLeave={(e) => e.currentTarget.style.color = '#E6EDF3'}
-          />
-        </Link>
+        <div className="flex items-center gap-2 group mr-2">
+          <Link to="/" className="flex items-center gap-2">
+            <Box
+              size={32}
+              className="transition-colors"
+              style={{ color: '#E6EDF3' }}
+              onMouseEnter={(e) => e.currentTarget.style.color = '#8B949E'}
+              onMouseLeave={(e) => e.currentTarget.style.color = '#E6EDF3'}
+            />
+            <span className="text-lg font-bold tracking-tight" style={{ color: '#E6EDF3' }}>
+              DevGeeks
+            </span>
+          </Link>
+          <span className="hidden md:block text-lg font-medium mx-3" style={{ color: '#E6EDF3', opacity: 0.5 }}>|</span>
+        </div>
 
         {/* Navigation Links */}
         <nav className="hidden md:flex items-center gap-4 font-semibold">
