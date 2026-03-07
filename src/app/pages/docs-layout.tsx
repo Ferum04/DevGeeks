@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { Home, ChevronRight, ChevronLeft, Server, HardDrive, Box } from "lucide-react";
+import { Home, ChevronRight, ChevronLeft, Server, HardDrive, Box, Music } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Header } from "../components/layout/header";
 import { Footer } from "../components/layout/footer";
@@ -7,6 +7,7 @@ const navItems = [
   { path: "/docs/introduction", label: "Introduction", icon: Home },
   { path: "/docs/hardware-selection", label: "Hardware Selection", icon: HardDrive },
   { path: "/docs/proxmox-installation", label: "Proxmox Installation", icon: Server },
+  { path: "/docs/musi-server", label: "Music Server", icon: Music },
 ];
 
 export function DocsLayout() {
