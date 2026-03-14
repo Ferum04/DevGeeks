@@ -1,7 +1,6 @@
 import { Outlet, Link, useLocation } from "react-router";
 import { Home, ChevronRight, ChevronLeft, Server, HardDrive, Box, Music } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next";
 import { Header } from "../components/layout/header";
 import { Footer } from "../components/layout/footer";
 const navItems = [
@@ -13,7 +12,6 @@ const navItems = [
 
 export function DocsLayout() {
   const location = useLocation();
-  const { t } = useTranslation();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -29,12 +27,16 @@ export function DocsLayout() {
   const nextItem = currentIndex < navItems.length - 1 ? navItems[currentIndex + 1] : null;
 
   return (
-    <div className="flex flex-col h-screen overflow-hidden bg-background">
+    <div className="flex flex-col h-screen overflow-hidden" style={{ background: '#0D1117' }}>
       <Header />
       <div className="flex-1 flex overflow-hidden">
         {/* Left Sidebar */}
         <aside
-          className="hidden md:block w-64 flex-shrink-0 border-r border-border overflow-y-auto bg-muted/30 text-foreground"
+          className="w-64 flex-shrink-0 border-r overflow-y-auto"
+          style={{
+            background: '#010409',
+            borderColor: '#30363D'
+          }}
         >
           <div className="p-6">
             <nav className="space-y-1">
@@ -47,10 +49,24 @@ export function DocsLayout() {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className={`flex items-center gap-3 px-3 py-2 rounded transition-colors border-l-2 ${isActive
-                      ? 'bg-card text-foreground border-primary'
-                      : 'bg-transparent text-muted-foreground border-transparent hover:bg-card hover:text-foreground'
-                      }`}
+                    className="flex items-center gap-3 px-3 py-2 rounded transition-colors"
+                    style={{
+                      background: isActive ? '#161B22' : 'transparent',
+                      color: isActive ? '#FFFFFF' : '#8B949E',
+                      borderLeft: isActive ? '2px solid #A371F7' : '2px solid transparent',
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.background = '#161B22';
+                        e.currentTarget.style.color = '#FFFFFF';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.background = 'transparent';
+                        e.currentTarget.style.color = '#8B949E';
+                      }
+                    }}
                   >
                     <Icon size={18} />
                     <span className="text-sm">{item.label}</span>
@@ -70,12 +86,28 @@ export function DocsLayout() {
 
               {/* Navigation Footer */}
               <div
-                className="flex flex-col sm:flex-row gap-4 justify-between items-center mt-16 pt-8 border-t border-border"
+                className="flex justify-between items-center mt-16 pt-8 border-t"
+                style={{ borderColor: '#30363D' }}
               >
                 {prevItem ? (
                   <Link
                     to={prevItem.path}
-                    className="flex w-full sm:w-auto items-center justify-center sm:justify-start gap-2 px-4 py-2 rounded transition-colors border border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground hover:border-primary"
+                    className="flex items-center gap-2 px-4 py-2 rounded transition-colors"
+                    style={{
+                      background: '#161B22',
+                      color: '#8B949E',
+                      border: '1px solid #30363D'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = '#21262D';
+                      e.currentTarget.style.color = '#FFFFFF';
+                      e.currentTarget.style.borderColor = '#A371F7';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = '#161B22';
+                      e.currentTarget.style.color = '#8B949E';
+                      e.currentTarget.style.borderColor = '#30363D';
+                    }}
                   >
                     <ChevronLeft size={18} />
                     <span className="text-sm">{prevItem.label}</span>
@@ -87,7 +119,22 @@ export function DocsLayout() {
                 {nextItem ? (
                   <Link
                     to={nextItem.path}
-                    className="flex w-full sm:w-auto items-center justify-center sm:justify-end gap-2 px-4 py-2 rounded transition-colors border border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground hover:border-primary"
+                    className="flex items-center gap-2 px-4 py-2 rounded transition-colors"
+                    style={{
+                      background: '#161B22',
+                      color: '#8B949E',
+                      border: '1px solid #30363D'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = '#21262D';
+                      e.currentTarget.style.color = '#FFFFFF';
+                      e.currentTarget.style.borderColor = '#A371F7';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = '#161B22';
+                      e.currentTarget.style.color = '#8B949E';
+                      e.currentTarget.style.borderColor = '#30363D';
+                    }}
                   >
                     <span className="text-sm">{nextItem.label}</span>
                     <ChevronRight size={18} />
@@ -102,32 +149,46 @@ export function DocsLayout() {
 
           {/* Right Sidebar - Table of Contents */}
           <aside
-            className="w-64 flex-shrink-0 border-l border-border overflow-y-auto hidden xl:block bg-background text-foreground"
+            className="w-64 flex-shrink-0 border-l overflow-y-auto hidden xl:block"
+            style={{
+              background: '#0D1117',
+              borderColor: '#30363D'
+            }}
           >
             <div className="p-6 sticky top-0">
               <h3
-                className="text-sm font-semibold mb-4 text-muted-foreground"
+                className="text-sm font-semibold mb-4"
+                style={{ color: '#8B949E' }}
               >
-                {t('docs.onThisPage')}
+                ON THIS PAGE
               </h3>
               <div className="space-y-2">
                 <a
                   href="#overview"
-                  className="block text-sm py-1 transition-colors text-muted-foreground hover:text-foreground"
+                  className="block text-sm py-1 transition-colors"
+                  style={{ color: '#8B949E' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#8B949E'}
                 >
-                  {t('docs.overview')}
+                  Overview
                 </a>
                 <a
                   href="#getting-started"
-                  className="block text-sm py-1 transition-colors text-muted-foreground hover:text-foreground"
+                  className="block text-sm py-1 transition-colors"
+                  style={{ color: '#8B949E' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#8B949E'}
                 >
-                  {t('docs.gettingStarted')}
+                  Getting Started
                 </a>
                 <a
                   href="#key-concepts"
-                  className="block text-sm py-1 transition-colors text-muted-foreground hover:text-foreground"
+                  className="block text-sm py-1 transition-colors"
+                  style={{ color: '#8B949E' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#8B949E'}
                 >
-                  {t('docs.keyConcepts')}
+                  Key Concepts
                 </a>
               </div>
             </div>
