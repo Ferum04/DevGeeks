@@ -1,10 +1,26 @@
 import { Link, useLocation } from "react-router";
-import { Box, Search, Plus, Bell, LogOut } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { Box, Search, Plus, Bell, LogOut, Globe } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
+import { useLanguage } from "../../context/LanguageContext";
 
 export function Header() {
   const location = useLocation();
   const { user, logout } = useAuth();
+  const { language, setLanguage, t } = useLanguage();
+
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
+        setIsLangMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header
@@ -27,7 +43,7 @@ export function Header() {
               onMouseLeave={(e) => e.currentTarget.style.color = '#E6EDF3'}
             />
             <span className="text-lg font-bold tracking-tight" style={{ color: '#E6EDF3' }}>
-              DevGeeks
+              {t("header.title")}
             </span>
           </Link>
           <span className="hidden md:block text-lg font-medium mx-3" style={{ color: '#E6EDF3', opacity: 0.5 }}>|</span>
@@ -47,7 +63,7 @@ export function Header() {
             className="transition-colors hover:text-gray-400"
             style={{ color: location.pathname.startsWith('/docs') ? '#FFFFFF' : '#E6EDF3' }}
           >
-            Documentation
+            {t("header.documentation")}
           </Link>
         </nav>
       </div>
@@ -69,6 +85,77 @@ export function Header() {
 
           {/* Right Icons */}
           <div className="flex items-center gap-3" style={{ color: '#8B949E' }}>
+            {/* Language Switcher Dropdown */}
+            <div className="relative" ref={langMenuRef}>
+              <button
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                className="flex items-center gap-1 hover:text-white transition-colors"
+                title="Select language"
+              >
+                <Globe size={20} />
+                <span className="text-xs uppercase font-bold">{language}</span>
+              </button>
+
+              {isLangMenuOpen && (
+                <div
+                  className="absolute top-full right-0 mt-3 py-2 w-max min-w-[160px] rounded-md shadow-lg border z-50 text-sm whitespace-nowrap"
+                  style={{
+                    background: '#161B22',
+                    borderColor: '#30363D'
+                  }}
+                >
+                  <button
+                    onClick={() => { setLanguage('en'); setIsLangMenuOpen(false); }}
+                    className="w-full text-left px-4 py-2 transition-colors flex items-center justify-between gap-2"
+                    style={{
+                      color: language === 'en' ? '#FFFFFF' : '#8B949E',
+                      background: language === 'en' ? 'rgba(56, 139, 253, 0.1)' : 'transparent',
+                      borderLeft: language === 'en' ? '2px solid #58A6FF' : '2px solid transparent'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (language !== 'en') {
+                        e.currentTarget.style.background = '#21262D';
+                        e.currentTarget.style.color = '#FFFFFF';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (language !== 'en') {
+                        e.currentTarget.style.background = 'transparent';
+                        e.currentTarget.style.color = '#8B949E';
+                      }
+                    }}
+                  >
+                    <span>English</span>
+                    <span className="text-xs opacity-70">(EN)</span>
+                  </button>
+                  <button
+                    onClick={() => { setLanguage('uk'); setIsLangMenuOpen(false); }}
+                    className="w-full text-left px-4 py-2 transition-colors flex items-center justify-between gap-2"
+                    style={{
+                      color: language === 'uk' ? '#FFFFFF' : '#8B949E',
+                      background: language === 'uk' ? 'rgba(56, 139, 253, 0.1)' : 'transparent',
+                      borderLeft: language === 'uk' ? '2px solid #58A6FF' : '2px solid transparent'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (language !== 'uk') {
+                        e.currentTarget.style.background = '#21262D';
+                        e.currentTarget.style.color = '#FFFFFF';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (language !== 'uk') {
+                        e.currentTarget.style.background = 'transparent';
+                        e.currentTarget.style.color = '#8B949E';
+                      }
+                    }}
+                  >
+                    <span>Українська</span>
+                    <span className="text-xs opacity-70">(UK)</span>
+                  </button>
+                </div>
+              )}
+            </div>
+
             <button className="hover:text-white transition-colors">
               <Plus size={20} />
             </button>

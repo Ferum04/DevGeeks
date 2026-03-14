@@ -1,7 +1,10 @@
 import { Link } from "react-router";
 import { Box, Github, Twitter, Linkedin } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 export function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer
       className="border-t py-12 px-6 mt-auto text-xs"
@@ -22,7 +25,7 @@ export function Footer() {
             </span>
           </Link>
           <p>
-            Learn how to organize your own homelab. Build, deploy, and manage your infrastructure like a pro.
+            {t('footer.description')}
           </p>
           <div className="flex gap-4 mt-2">
             <a href="#" className="hover:text-white transition-colors"><Twitter size={18} /></a>
@@ -34,27 +37,27 @@ export function Footer() {
         {/* Link Columns */}
         <div className="flex flex-wrap gap-12 md:gap-24">
           <div className="flex flex-col gap-3">
-            <h3 className="font-semibold mb-1" style={{ color: '#E6EDF3' }}>Product</h3>
-            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Features</Link>
-            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Documentation</Link>
-            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Hardware</Link>
-            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Software</Link>
+            <h3 className="font-semibold mb-1" style={{ color: '#E6EDF3' }}>{t('footer.product')}</h3>
+            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">{t('footer.features')}</Link>
+            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">{t('footer.docLink')}</Link>
+            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">{t('footer.hardware')}</Link>
+            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">{t('footer.software')}</Link>
           </div>
 
           <div className="flex flex-col gap-3">
-            <h3 className="font-semibold mb-1" style={{ color: '#E6EDF3' }}>Platform</h3>
-            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Proxmox</Link>
-            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Docker</Link>
-            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Home Assistant</Link>
-            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">Networking</Link>
+            <h3 className="font-semibold mb-1" style={{ color: '#E6EDF3' }}>{t('footer.platform')}</h3>
+            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">{t('footer.proxmox')}</Link>
+            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">{t('footer.docker')}</Link>
+            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">{t('footer.homeAssistant')}</Link>
+            <Link to="/docs" className="hover:text-blue-400 hover:underline transition-all">{t('footer.networking')}</Link>
           </div>
 
           <div className="flex flex-col gap-3">
-            <h3 className="font-semibold mb-1" style={{ color: '#E6EDF3' }}>Community</h3>
-            <a href="#" className="hover:text-blue-400 hover:underline transition-all">Discussions</a>
-            <a href="#" className="hover:text-blue-400 hover:underline transition-all">Blog</a>
-            <a href="#" className="hover:text-blue-400 hover:underline transition-all">Open Source</a>
-            <a href="#" className="hover:text-blue-400 hover:underline transition-all">Support</a>
+            <h3 className="font-semibold mb-1" style={{ color: '#E6EDF3' }}>{t('footer.communityHeader')}</h3>
+            <a href="#" className="hover:text-blue-400 hover:underline transition-all">{t('footer.discussions')}</a>
+            <a href="#" className="hover:text-blue-400 hover:underline transition-all">{t('footer.blog')}</a>
+            <a href="#" className="hover:text-blue-400 hover:underline transition-all">{t('footer.openSource')}</a>
+            <a href="#" className="hover:text-blue-400 hover:underline transition-all">{t('footer.support')}</a>
           </div>
         </div>
       </div>
@@ -65,13 +68,13 @@ export function Footer() {
         style={{ borderColor: '#21262D' }}
       >
         <div className="flex items-center gap-4">
-          <span>&copy; {new Date().getFullYear()} DevGeeks, Inc.</span>
+          <span>{t('footer.copyright')}</span>
         </div>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-blue-400 hover:underline transition-all">Terms</a>
-          <a href="#" className="hover:text-blue-400 hover:underline transition-all">Privacy</a>
-          <a href="#" className="hover:text-blue-400 hover:underline transition-all">Status</a>
-          <a href="#" className="hover:text-blue-400 hover:underline transition-all">Docs</a>
+          <a href="#" className="hover:text-blue-400 hover:underline transition-all">{t('footer.terms')}</a>
+          <a href="#" className="hover:text-blue-400 hover:underline transition-all">{t('footer.privacy')}</a>
+          <a href="#" className="hover:text-blue-400 hover:underline transition-all">{t('footer.status')}</a>
+          <a href="#" className="hover:text-blue-400 hover:underline transition-all">{t('footer.docs')}</a>
         </div>
       </div>
     </footer>

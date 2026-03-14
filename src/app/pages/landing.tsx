@@ -2,9 +2,11 @@ import { useNavigate } from "react-router";
 import { Terminal } from "lucide-react";
 import { Header } from "../components/layout/header";
 import { Footer } from "../components/layout/footer";
+import { useLanguage } from "../context/LanguageContext";
 
 export function Landing() {
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen relative flex flex-col" style={{ background: '#0D1117' }}>
@@ -38,24 +40,24 @@ export function Landing() {
             className="relative p-6 rounded-2xl"
             style={{ background: '#161B22', border: '1px solid #30363D' }}
           >
-            <Terminal size={48} style={{ color: '#2EA043' }} />
+            <Terminal size={48} style={{ color: '#E6EDF3' }} />
           </div>
         </div>
 
         {/* Heading */}
         <h1
-          className="text-6xl font-bold text-center mb-6 tracking-tight"
+          className="text-4xl md:text-6xl font-bold text-center mb-6 tracking-tight px-4"
           style={{ color: '#FFFFFF' }}
         >
-          Welcome to DevGeeks
+          {t('landing.welcome')}
         </h1>
 
         {/* Subheading */}
         <p
-          className="text-xl text-center mb-12 max-w-2xl"
+          className="text-lg md:text-xl text-center mb-12 max-w-2xl px-4"
           style={{ color: '#8B949E' }}
         >
-          Here you can learn how to organize your own homelab
+          {t('landing.subtitle')}
         </p>
 
         {/* CTA Button */}
@@ -63,21 +65,21 @@ export function Landing() {
           onClick={() => navigate('/docs')}
           className="group relative px-8 py-4 text-lg font-semibold transition-all duration-200 overflow-hidden"
           style={{
-            background: '#238636',
-            color: '#FFFFFF',
+            background: '#E6EDF3',
+            color: '#010409',
             borderRadius: '6px',
             border: 'none',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#2EA043';
-            e.currentTarget.style.boxShadow = '0 0 20px rgba(46, 160, 67, 0.4)';
+            e.currentTarget.style.background = '#FFFFFF';
+            e.currentTarget.style.boxShadow = '0 0 20px rgba(230, 237, 243, 0.3)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#238636';
+            e.currentTarget.style.background = '#E6EDF3';
             e.currentTarget.style.boxShadow = 'none';
           }}
         >
-          <span className="relative z-10">Get Started</span>
+          <span className="relative z-10">{t('landing.getStarted')}</span>
         </button>
 
         {/* Decorative Elements */}
@@ -92,7 +94,7 @@ export function Landing() {
           />
           <div
             className="w-2 h-2 rounded-full"
-            style={{ background: '#2EA043' }}
+            style={{ background: '#58A6FF' }}
           />
         </div>
       </div>

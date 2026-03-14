@@ -1,34 +1,36 @@
 import { Cpu, DollarSign, Zap } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 export function HardwareSelection() {
+  const { t } = useLanguage();
+
   return (
     <div>
       <div className="mb-8">
-        <h1 
+        <h1
           className="text-4xl font-bold mb-4 pb-4 border-b"
           style={{ color: '#FFFFFF', borderColor: '#30363D' }}
         >
-          Hardware Selection
+          {t('docs.hardware.title')}
         </h1>
-        <p 
+        <p
           className="text-lg"
           style={{ color: '#8B949E' }}
         >
-          Choosing the right hardware is crucial for your homelab. Let's explore different options 
-          based on your budget and requirements.
+          {t('docs.hardware.subtitle')}
         </p>
       </div>
 
       <section className="mb-8">
-        <h2 
+        <h2 id="min-req"
           className="text-2xl font-bold mb-4 pb-2 border-b"
           style={{ color: '#FFFFFF', borderColor: '#30363D' }}
         >
-          Minimum Requirements
+          {t('docs.hardware.minReq')}
         </h2>
-        <div 
+        <div
           className="p-4 rounded border mb-4"
-          style={{ 
+          style={{
             background: '#161B22',
             borderColor: '#30363D'
           }}
@@ -36,27 +38,27 @@ export function HardwareSelection() {
           <ul className="space-y-2" style={{ color: '#8B949E' }}>
             <li className="flex items-start gap-2">
               <span style={{ color: '#2EA043' }}>•</span>
-              <span><strong style={{ color: '#FFFFFF' }}>CPU:</strong> Dual-core processor (Intel i3 or AMD Ryzen 3)</span>
+              <span>{t('docs.hardware.cpu')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span style={{ color: '#2EA043' }}>•</span>
-              <span><strong style={{ color: '#FFFFFF' }}>RAM:</strong> 8GB minimum, 16GB recommended</span>
+              <span>{t('docs.hardware.ram')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span style={{ color: '#2EA043' }}>•</span>
-              <span><strong style={{ color: '#FFFFFF' }}>Storage:</strong> 256GB SSD minimum</span>
+              <span>{t('docs.hardware.storage')}</span>
             </li>
             <li className="flex items-start gap-2">
               <span style={{ color: '#2EA043' }}>•</span>
-              <span><strong style={{ color: '#FFFFFF' }}>Network:</strong> Gigabit Ethernet (1Gbps)</span>
+              <span>{t('docs.hardware.network')}</span>
             </li>
           </ul>
         </div>
       </section>
 
-      <div 
+      <div
         className="p-4 rounded mb-6 border-l-4"
-        style={{ 
+        style={{
           background: '#161B22',
           borderColor: '#A371F7'
         }}
@@ -65,27 +67,26 @@ export function HardwareSelection() {
           <Zap size={20} style={{ color: '#A371F7', flexShrink: 0 }} />
           <div>
             <p className="font-semibold mb-1" style={{ color: '#A371F7' }}>
-              Pro Tip
+              {t('docs.introduction.proTipTitle')}
             </p>
             <p className="text-sm" style={{ color: '#8B949E' }}>
-              Look for used enterprise hardware on eBay. Dell PowerEdge R710 or HP ProLiant servers 
-              offer great value for money!
+              {t('docs.hardware.proTipText')}
             </p>
           </div>
         </div>
       </div>
 
       <section className="mb-8">
-        <h2 
+        <h2 id="budget-options"
           className="text-2xl font-bold mb-4 pb-2 border-b"
           style={{ color: '#FFFFFF', borderColor: '#30363D' }}
         >
-          Budget Options
+          {t('docs.hardware.budgetOptions')}
         </h2>
         <div className="grid gap-4">
-          <div 
+          <div
             className="p-5 rounded border"
-            style={{ 
+            style={{
               background: '#161B22',
               borderColor: '#30363D'
             }}
@@ -93,9 +94,9 @@ export function HardwareSelection() {
             <div className="flex items-start justify-between mb-3">
               <h3 className="text-lg font-semibold" style={{ color: '#FFFFFF' }}>
                 <Cpu className="inline mr-2" size={20} style={{ color: '#39C5CF' }} />
-                Raspberry Pi 4
+                {t('docs.hardware.rpi')}
               </h3>
-              <span 
+              <span
                 className="px-3 py-1 rounded text-sm font-semibold"
                 style={{ background: '#238636', color: '#FFFFFF' }}
               >
@@ -103,16 +104,16 @@ export function HardwareSelection() {
               </span>
             </div>
             <p className="text-sm mb-3" style={{ color: '#8B949E' }}>
-              Perfect for beginners. Low power consumption and great for learning Docker and basic services.
+              {t('docs.hardware.rpiDesc')}
             </p>
             <div className="flex gap-2">
-              <span 
+              <span
                 className="px-2 py-1 rounded text-xs"
                 style={{ background: '#0D1117', color: '#8B949E', border: '1px solid #30363D' }}
               >
                 ARM64
               </span>
-              <span 
+              <span
                 className="px-2 py-1 rounded text-xs"
                 style={{ background: '#0D1117', color: '#8B949E', border: '1px solid #30363D' }}
               >
@@ -121,9 +122,9 @@ export function HardwareSelection() {
             </div>
           </div>
 
-          <div 
+          <div
             className="p-5 rounded border"
-            style={{ 
+            style={{
               background: '#161B22',
               borderColor: '#30363D'
             }}
@@ -131,9 +132,9 @@ export function HardwareSelection() {
             <div className="flex items-start justify-between mb-3">
               <h3 className="text-lg font-semibold" style={{ color: '#FFFFFF' }}>
                 <Cpu className="inline mr-2" size={20} style={{ color: '#A371F7' }} />
-                Intel NUC
+                {t('docs.hardware.nuc')}
               </h3>
-              <span 
+              <span
                 className="px-3 py-1 rounded text-sm font-semibold"
                 style={{ background: '#238636', color: '#FFFFFF' }}
               >
@@ -141,16 +142,16 @@ export function HardwareSelection() {
               </span>
             </div>
             <p className="text-sm mb-3" style={{ color: '#8B949E' }}>
-              Small form factor with excellent performance. Can run multiple VMs and containers efficiently.
+              {t('docs.hardware.nucDesc')}
             </p>
             <div className="flex gap-2">
-              <span 
+              <span
                 className="px-2 py-1 rounded text-xs"
                 style={{ background: '#0D1117', color: '#8B949E', border: '1px solid #30363D' }}
               >
                 x86_64
               </span>
-              <span 
+              <span
                 className="px-2 py-1 rounded text-xs"
                 style={{ background: '#0D1117', color: '#8B949E', border: '1px solid #30363D' }}
               >
@@ -159,9 +160,9 @@ export function HardwareSelection() {
             </div>
           </div>
 
-          <div 
+          <div
             className="p-5 rounded border"
-            style={{ 
+            style={{
               background: '#161B22',
               borderColor: '#30363D'
             }}
@@ -169,9 +170,9 @@ export function HardwareSelection() {
             <div className="flex items-start justify-between mb-3">
               <h3 className="text-lg font-semibold" style={{ color: '#FFFFFF' }}>
                 <Cpu className="inline mr-2" size={20} style={{ color: '#2EA043' }} />
-                Used Workstation
+                {t('docs.hardware.workstation')}
               </h3>
-              <span 
+              <span
                 className="px-3 py-1 rounded text-sm font-semibold"
                 style={{ background: '#238636', color: '#FFFFFF' }}
               >
@@ -179,16 +180,16 @@ export function HardwareSelection() {
               </span>
             </div>
             <p className="text-sm mb-3" style={{ color: '#8B949E' }}>
-              Best bang for buck. Dell Optiplex or HP EliteDesk with expandable RAM and storage.
+              {t('docs.hardware.workstationDesc')}
             </p>
             <div className="flex gap-2">
-              <span 
+              <span
                 className="px-2 py-1 rounded text-xs"
                 style={{ background: '#0D1117', color: '#8B949E', border: '1px solid #30363D' }}
               >
                 x86_64
               </span>
-              <span 
+              <span
                 className="px-2 py-1 rounded text-xs"
                 style={{ background: '#0D1117', color: '#8B949E', border: '1px solid #30363D' }}
               >
@@ -200,13 +201,13 @@ export function HardwareSelection() {
       </section>
 
       <section className="mb-8">
-        <h2 
+        <h2 id="performance-comparison"
           className="text-2xl font-bold mb-4 pb-2 border-b"
           style={{ color: '#FFFFFF', borderColor: '#30363D' }}
         >
-          Performance Comparison
+          {t('docs.hardware.compare')}
         </h2>
-        <pre 
+        <pre
           className="p-4 rounded overflow-x-auto"
           style={{ background: '#000000' }}
         >

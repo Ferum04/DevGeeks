@@ -1,15 +1,18 @@
 import { Terminal } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 export function MusiServer() {
+    const { t } = useLanguage();
+
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
             {/* Header section */}
             <div>
                 <h1 className="text-4xl font-bold mb-4 tracking-tight" style={{ color: '#E6EDF3' }}>
-                    🎵 Music Server
+                    {t('docs.musi.title')}
                 </h1>
                 <p className="text-xl" style={{ color: '#8B949E' }}>
-                    Complete Guide: Deploying Navidrome in an LXC Container
+                    {t('docs.musi.subtitle')}
                 </p>
             </div>
 
@@ -18,23 +21,23 @@ export function MusiServer() {
                 {/* Phase 1 */}
                 <section id="phase-1" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2" style={{ color: '#58A6FF' }}>
-                        Phase 1: Creating the Container with the Necessary Resources
+                        {t('docs.musi.phase1')}
                     </h2>
                     <p className="mb-4 text-sm" style={{ color: '#C9D1D9' }}>
-                        On your Proxmox host (via the Web UI or CLI), create the &quot;home&quot; for your music server.
+                        {t('docs.musi.phase1_1')}
                     </p>
 
                     <ul className="list-disc pl-6 space-y-2 mb-6 text-sm" style={{ color: '#C9D1D9' }}>
-                        <li><strong style={{ color: '#E6EDF3' }}>Template:</strong> It is recommended to choose the latest available Debian version (e.g., Debian 12 &quot;Bookworm&quot;).</li>
+                        <li>{t('docs.musi.template')}</li>
                         <li>
-                            <strong style={{ color: '#E6EDF3' }}>Resources:</strong>
+                            <strong style={{ color: '#E6EDF3' }}>{t('docs.musi.resources')}</strong>
                             <ul className="list-circle pl-6 mt-2 space-y-1">
-                                <li>CPU: 1 Core (sufficient for 1-2 concurrent transcoding streams).</li>
-                                <li>RAM: 512 MB (Navidrome is very lightweight).</li>
-                                <li>Disk: 8 GB on your SSD (for the OS and the metadata database).</li>
+                                <li>{t('docs.musi.cpu')}</li>
+                                <li>{t('docs.musi.ram')}</li>
+                                <li>{t('docs.musi.disk')}</li>
                             </ul>
                         </li>
-                        <li><strong style={{ color: '#E6EDF3' }}>Network:</strong> Assign a static IP (e.g., <code style={{ color: '#A371F7' }}>192.168.0.202/24</code>) and set the Gateway to your router&apos;s IP (<code style={{ color: '#A371F7' }}>192.168.0.1</code>).</li>
+                        <li>{t('docs.musi.network')}</li>
                     </ul>
 
                     <div
@@ -43,7 +46,7 @@ export function MusiServer() {
                     >
                         <span style={{ color: '#D29922' }}>⚠️</span>
                         <p className="text-sm m-0" style={{ color: '#E6EDF3' }}>
-                            <strong style={{ color: '#D29922' }}>Important:</strong> Enable the Nesting feature under Options -&gt; Features to ensure systemd services run correctly.
+                            {t('docs.musi.important')}
                         </p>
                     </div>
                 </section>
@@ -53,12 +56,12 @@ export function MusiServer() {
                 {/* Phase 2 */}
                 <section id="phase-2" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2" style={{ color: '#58A6FF' }}>
-                        Phase 2: Connecting the Hard Drive (HDD)
+                        {t('docs.musi.phase2')}
                     </h2>
                     <p className="mb-4 text-sm" style={{ color: '#C9D1D9' }}>
-                        Navidrome needs to &quot;see&quot; your music collection stored on your physical HDD. We will &quot;pass through&quot; the folder from the Proxmox host into the container.
+                        {t('docs.musi.phase2_1')}
                     </p>
-                    <p className="mb-2 text-sm" style={{ color: '#C9D1D9' }}>On the Proxmox host shell, run (replace <code style={{ color: '#A371F7' }}>102</code> with your actual LXC container ID):</p>
+                    <p className="mb-2 text-sm" style={{ color: '#C9D1D9' }}>{t('docs.musi.phase2_2')}</p>
 
                     <div className="rounded-md overflow-hidden border mb-6" style={{ borderColor: '#30363D' }}>
                         <div className="px-4 py-2 flex items-center gap-2 font-mono text-xs border-b" style={{ background: '#161B22', borderColor: '#30363D', color: '#8B949E' }}>
@@ -75,13 +78,13 @@ export function MusiServer() {
                 {/* Phase 3 */}
                 <section id="phase-3" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2" style={{ color: '#58A6FF' }}>
-                        Phase 3: Preparing the System and Dependencies
+                        {t('docs.musi.phase3')}
                     </h2>
                     <p className="mb-4 text-sm" style={{ color: '#C9D1D9' }}>
-                        Enter the container (<code style={{ color: '#A371F7' }}>pct enter 102</code> - again, using your ID) and build the &quot;foundation&quot;:
+                        {t('docs.musi.phase3_1')}
                     </p>
 
-                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>1. Update package lists:</h3>
+                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>{t('docs.musi.phase3_step1')}</h3>
                     <div className="rounded-md overflow-hidden border mb-6" style={{ borderColor: '#30363D' }}>
                         <div className="px-4 py-2 flex items-center gap-2 font-mono text-xs border-b" style={{ background: '#161B22', borderColor: '#30363D', color: '#8B949E' }}>
                             <Terminal size={14} /> Bash
@@ -91,7 +94,7 @@ export function MusiServer() {
                         </pre>
                     </div>
 
-                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>2. Install critical dependencies:</h3>
+                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>{t('docs.musi.phase3_step2')}</h3>
                     <div className="rounded-md overflow-hidden border mb-2" style={{ borderColor: '#30363D' }}>
                         <div className="px-4 py-2 flex items-center gap-2 font-mono text-xs border-b" style={{ background: '#161B22', borderColor: '#30363D', color: '#8B949E' }}>
                             <Terminal size={14} /> Bash
@@ -101,10 +104,10 @@ export function MusiServer() {
                         </pre>
                     </div>
                     <p className="mb-6 text-sm italic" style={{ color: '#8B949E' }}>
-                        * FFmpeg is vital for &quot;on-the-fly&quot; transcoding (e.g., converting FLAC to MP3 for your phone).
+                        {t('docs.musi.phase3_step2_note')}
                     </p>
 
-                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>3. Create folders and a dedicated user:</h3>
+                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>{t('docs.musi.phase3_step3')}</h3>
                     <div className="rounded-md overflow-hidden border mb-6" style={{ borderColor: '#30363D' }}>
                         <div className="px-4 py-2 flex items-center gap-2 font-mono text-xs border-b" style={{ background: '#161B22', borderColor: '#30363D', color: '#8B949E' }}>
                             <Terminal size={14} /> Bash
@@ -120,13 +123,13 @@ export function MusiServer() {
                 {/* Phase 4 */}
                 <section id="phase-4" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2" style={{ color: '#58A6FF' }}>
-                        Phase 4: Installing Navidrome from GitHub
+                        {t('docs.musi.phase4')}
                     </h2>
                     <p className="mb-4 text-sm" style={{ color: '#C9D1D9' }}>
-                        We will download a stable release to ensure a smooth installation.
+                        {t('docs.musi.phase4_1')}
                     </p>
 
-                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>1. Download the archive:</h3>
+                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>{t('docs.musi.phase4_step1')}</h3>
                     <div className="rounded-md overflow-hidden border mb-6" style={{ borderColor: '#30363D' }}>
                         <div className="px-4 py-2 flex items-center gap-2 font-mono text-xs border-b" style={{ background: '#161B22', borderColor: '#30363D', color: '#8B949E' }}>
                             <Terminal size={14} /> Bash
@@ -136,7 +139,7 @@ export function MusiServer() {
                         </pre>
                     </div>
 
-                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>2. Extract to the application folder:</h3>
+                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>{t('docs.musi.phase4_step2')}</h3>
                     <div className="rounded-md overflow-hidden border mb-6" style={{ borderColor: '#30363D' }}>
                         <div className="px-4 py-2 flex items-center gap-2 font-mono text-xs border-b" style={{ background: '#161B22', borderColor: '#30363D', color: '#8B949E' }}>
                             <Terminal size={14} /> Bash
@@ -152,13 +155,13 @@ export function MusiServer() {
                 {/* Phase 5 */}
                 <section id="phase-5" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2" style={{ color: '#58A6FF' }}>
-                        Phase 5: Configuration and Autostart
+                        {t('docs.musi.phase5')}
                     </h2>
                     <p className="mb-4 text-sm" style={{ color: '#C9D1D9' }}>
-                        Now, we teach the system to start Navidrome automatically.
+                        {t('docs.musi.phase5_1')}
                     </p>
 
-                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>1. Create the configuration file:</h3>
+                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>{t('docs.musi.phase5_step1')}</h3>
                     <p className="mb-2 text-sm" style={{ color: '#C9D1D9' }}><code style={{ color: '#A371F7' }}>nano /var/lib/navidrome/navidrome.toml</code></p>
                     <div className="rounded-md overflow-hidden border mb-6" style={{ borderColor: '#30363D' }}>
                         <div className="px-4 py-2 flex items-center gap-2 font-mono text-xs border-b" style={{ background: '#161B22', borderColor: '#30363D', color: '#8B949E' }}>
@@ -169,7 +172,7 @@ export function MusiServer() {
                         </pre>
                     </div>
 
-                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>2. Create the Autostart Service:</h3>
+                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>{t('docs.musi.phase5_step2')}</h3>
                     <p className="mb-2 text-sm" style={{ color: '#C9D1D9' }}><code style={{ color: '#A371F7' }}>nano /etc/systemd/system/navidrome.service</code></p>
                     <div className="rounded-md overflow-hidden border mb-6" style={{ borderColor: '#30363D' }}>
                         <div className="px-4 py-2 flex items-center gap-2 font-mono text-xs border-b" style={{ background: '#161B22', borderColor: '#30363D', color: '#8B949E' }}>
@@ -180,7 +183,7 @@ export function MusiServer() {
                         </pre>
                     </div>
 
-                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>3. Enable and Start:</h3>
+                    <h3 className="text-lg font-medium mb-2 mt-6" style={{ color: '#E6EDF3' }}>{t('docs.musi.phase5_step3')}</h3>
                     <div className="rounded-md overflow-hidden border mb-6" style={{ borderColor: '#30363D' }}>
                         <div className="px-4 py-2 flex items-center gap-2 font-mono text-xs border-b" style={{ background: '#161B22', borderColor: '#30363D', color: '#8B949E' }}>
                             <Terminal size={14} /> Bash
@@ -196,12 +199,12 @@ export function MusiServer() {
                 {/* Phase 6 */}
                 <section id="phase-6" className="mb-12">
                     <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2" style={{ color: '#58A6FF' }}>
-                        Phase 6: First Login and Setup
+                        {t('docs.musi.phase6')}
                     </h2>
                     <ul className="list-decimal pl-6 space-y-3 mb-6 text-sm" style={{ color: '#C9D1D9' }}>
-                        <li><strong style={{ color: '#E6EDF3' }}>Open your browser:</strong> Go to <a href="#" style={{ color: '#A371F7' }} className="hover:underline">http://192.168.0.202:4533</a>.</li>
-                        <li><strong style={{ color: '#E6EDF3' }}>Create an Admin:</strong> Set your username and a strong password.</li>
-                        <li><strong style={{ color: '#E6EDF3' }}>Wait:</strong> Navidrome will begin scanning the <code style={{ color: '#A371F7' }}>/music</code> folder. If you have a large FLAC collection, this might take a few minutes.</li>
+                        <li>{t('docs.musi.phase6_1')}</li>
+                        <li>{t('docs.musi.phase6_2')}</li>
+                        <li>{t('docs.musi.phase6_3')}</li>
                     </ul>
                 </section>
 
@@ -209,17 +212,17 @@ export function MusiServer() {
                 <section id="phase-7" className="mb-2">
                     <div className="p-6 rounded-lg border backdrop-blur-sm" style={{ background: 'rgba(46, 160, 67, 0.05)', borderColor: 'rgba(46, 160, 67, 0.2)' }}>
                         <h2 className="text-2xl font-semibold mb-4 flex items-center gap-2" style={{ color: '#2EA043' }}>
-                            Phase 7: Mobile Integration (Bonus)
+                            {t('docs.musi.phase7')}
                         </h2>
                         <p className="mb-4 text-sm" style={{ color: '#C9D1D9' }}>
-                            To listen to your music on the go:
+                            {t('docs.musi.phase7_1')}
                         </p>
                         <ul className="list-decimal pl-6 space-y-3 mb-4 text-sm" style={{ color: '#C9D1D9' }}>
-                            <li>Download a Subsonic-compatible app like <strong style={{ color: '#E6EDF3' }}>Symfonium</strong> or <strong style={{ color: '#E6EDF3' }}>Substreamer</strong>.</li>
-                            <li>Enter your server&apos;s IP address, your username, and your password.</li>
+                            <li>{t('docs.musi.phase7_2')}</li>
+                            <li>{t('docs.musi.phase7_3')}</li>
                         </ul>
                         <p className="text-sm italic" style={{ color: '#2EA043' }}>
-                            Your collection is now always with you, and thanks to FFmpeg, it won&apos;t drain your mobile data. 🎧
+                            {t('docs.musi.phase7_4')}
                         </p>
                     </div>
                 </section>

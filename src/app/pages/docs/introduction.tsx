@@ -1,30 +1,32 @@
 import { Book, AlertCircle, Zap } from "lucide-react";
+import { useLanguage } from "../../context/LanguageContext";
 
 export function Introduction() {
+  const { t } = useLanguage();
+
   return (
     <div>
       {/* Header */}
       <div className="mb-8">
-        <h1 
+        <h1
           className="text-4xl font-bold mb-4 pb-4 border-b"
           style={{ color: '#FFFFFF', borderColor: '#30363D' }}
           id="overview"
         >
-          Introduction
+          {t('docs.introduction.title')}
         </h1>
-        <p 
+        <p
           className="text-lg"
           style={{ color: '#8B949E' }}
         >
-          Welcome to the DevGeeks Homelab Guide. This comprehensive tutorial will walk you through 
-          building your own homelab from scratch.
+          {t('docs.introduction.welcome')}
         </p>
       </div>
 
       {/* Callout - Note */}
-      <div 
+      <div
         className="p-4 rounded mb-6 border-l-4"
-        style={{ 
+        style={{
           background: '#161B22',
           borderColor: '#58A6FF'
         }}
@@ -33,10 +35,10 @@ export function Introduction() {
           <AlertCircle size={20} style={{ color: '#58A6FF', flexShrink: 0 }} />
           <div>
             <p className="font-semibold mb-1" style={{ color: '#58A6FF' }}>
-              Note
+              {t('docs.introduction.noteTitle')}
             </p>
             <p className="text-sm" style={{ color: '#8B949E' }}>
-              This guide assumes you have basic knowledge of Linux commands and networking concepts.
+              {t('docs.introduction.noteText')}
             </p>
           </div>
         </div>
@@ -44,31 +46,29 @@ export function Introduction() {
 
       {/* Content Section */}
       <section className="mb-8" id="getting-started">
-        <h2 
+        <h2
           className="text-2xl font-bold mb-4 pb-2 border-b"
           style={{ color: '#FFFFFF', borderColor: '#30363D' }}
         >
-          What is a Homelab?
+          {t('docs.introduction.whatIsTitle')}
         </h2>
         <p className="mb-4" style={{ color: '#8B949E' }}>
-          A homelab is a personal environment where you can experiment with various technologies, 
-          learn new skills, and host services for your home network. It's an excellent way to gain 
-          hands-on experience with enterprise technologies without the enterprise price tag.
+          {t('docs.introduction.whatIsText')}
         </p>
       </section>
 
       {/* Code Block Example */}
       <section className="mb-8">
-        <h2 
+        <h2
           className="text-2xl font-bold mb-4 pb-2 border-b"
           style={{ color: '#FFFFFF', borderColor: '#30363D' }}
         >
-          Quick Start
+          {t('docs.introduction.quickStartTitle')}
         </h2>
         <p className="mb-4" style={{ color: '#8B949E' }}>
-          Before we dive into the details, let's verify your system requirements:
+          {t('docs.introduction.quickStartText')}
         </p>
-        <pre 
+        <pre
           className="p-4 rounded overflow-x-auto mb-4"
           style={{ background: '#000000' }}
         >
@@ -84,9 +84,9 @@ export function Introduction() {
       </section>
 
       {/* Pro Tip Callout */}
-      <div 
+      <div
         className="p-4 rounded mb-6 border-l-4"
-        style={{ 
+        style={{
           background: '#161B22',
           borderColor: '#A371F7'
         }}
@@ -95,11 +95,10 @@ export function Introduction() {
           <Zap size={20} style={{ color: '#A371F7', flexShrink: 0 }} />
           <div>
             <p className="font-semibold mb-1" style={{ color: '#A371F7' }}>
-              Pro Tip
+              {t('docs.introduction.proTipTitle')}
             </p>
             <p className="text-sm" style={{ color: '#8B949E' }}>
-              Start with a simple setup and gradually add complexity. You don't need expensive 
-              hardware to begin your homelab journey—an old laptop or a Raspberry Pi will work great!
+              {t('docs.introduction.proTipText')}
             </p>
           </div>
         </div>
@@ -107,58 +106,58 @@ export function Introduction() {
 
       {/* Key Concepts */}
       <section className="mb-8" id="key-concepts">
-        <h2 
+        <h2
           className="text-2xl font-bold mb-4 pb-2 border-b"
           style={{ color: '#FFFFFF', borderColor: '#30363D' }}
         >
-          Key Concepts
+          {t('docs.introduction.keyConceptsTitle')}
         </h2>
         <div className="grid gap-4">
-          <div 
+          <div
             className="p-4 rounded border"
-            style={{ 
+            style={{
               background: '#161B22',
               borderColor: '#30363D'
             }}
           >
             <h3 className="font-semibold mb-2" style={{ color: '#FFFFFF' }}>
               <Book className="inline mr-2" size={18} style={{ color: '#2EA043' }} />
-              Virtualization
+              {t('docs.introduction.virtualization')}
             </h3>
             <p className="text-sm" style={{ color: '#8B949E' }}>
-              Run multiple operating systems on a single physical machine, maximizing hardware utilization.
+              {t('docs.introduction.virtualizationDesc')}
             </p>
           </div>
 
-          <div 
+          <div
             className="p-4 rounded border"
-            style={{ 
+            style={{
               background: '#161B22',
               borderColor: '#30363D'
             }}
           >
             <h3 className="font-semibold mb-2" style={{ color: '#FFFFFF' }}>
               <Book className="inline mr-2" size={18} style={{ color: '#39C5CF' }} />
-              Containerization
+              {t('docs.introduction.containerization')}
             </h3>
             <p className="text-sm" style={{ color: '#8B949E' }}>
-              Package applications with their dependencies for consistent deployment across environments.
+              {t('docs.introduction.containerizationDesc')}
             </p>
           </div>
 
-          <div 
+          <div
             className="p-4 rounded border"
-            style={{ 
+            style={{
               background: '#161B22',
               borderColor: '#30363D'
             }}
           >
             <h3 className="font-semibold mb-2" style={{ color: '#FFFFFF' }}>
               <Book className="inline mr-2" size={18} style={{ color: '#A371F7' }} />
-              Home Automation
+              {t('docs.introduction.homeAutomation')}
             </h3>
             <p className="text-sm" style={{ color: '#8B949E' }}>
-              Control smart devices and automate tasks in your home using open-source software.
+              {t('docs.introduction.homeAutomationDesc')}
             </p>
           </div>
         </div>
