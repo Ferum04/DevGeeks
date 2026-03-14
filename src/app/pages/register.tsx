@@ -45,7 +45,7 @@ export function Register() {
 
                     <div className="flex flex-col items-center mb-8">
                         <Link to="/" className="flex items-center gap-2 mb-6">
-                            <Box size={32} style={{ color: '#2EA043' }} />
+                            <Box size={32} style={{ color: '#E6EDF3' }} />
                         </Link>
                         <h1 className="text-2xl font-bold mb-2 text-white">Create an account</h1>
                         <p style={{ color: '#8B949E' }} className="text-sm text-center">
@@ -134,14 +134,12 @@ export function Register() {
 
                             <button
                                 type="submit"
-                                className="w-full py-2.5 px-4 rounded-md font-semibold text-white transition-all duration-200 mt-2"
-                                style={{ background: '#238636' }}
+                                className="w-full py-2.5 px-4 rounded-md font-semibold transition-all duration-200 mt-2"
+                                style={{ background: '#E6EDF3', color: '#010409' }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = '#2EA043';
-                                    e.currentTarget.style.boxShadow = '0 0 10px rgba(46, 160, 67, 0.4)';
+                                    e.currentTarget.style.boxShadow = '0 0 15px rgba(230, 237, 243, 0.3)';
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = '#238636';
                                     e.currentTarget.style.boxShadow = 'none';
                                 }}
                             >
