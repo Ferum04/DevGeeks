@@ -247,39 +247,6 @@ export function DocsLayout() {
             </article>
             <Footer />
           </div>
-
-          {/* Right Sidebar - Dynamic Table of Contents */}
-          <aside
-            className="w-64 flex-shrink-0 border-l overflow-y-auto hidden xl:block"
-            style={{
-              background: '#0D1117',
-              borderColor: '#30363D'
-            }}
-          >
-            <div className="p-6 sticky top-0">
-              <h3
-                className="text-sm font-semibold mb-4"
-                style={{ color: '#8B949E' }}
-              >
-                {t('docs.layout.onThisPage')}
-              </h3>
-              <div className="space-y-2">
-                {navItems[currentIndex]?.subItems?.map((subItem) => (
-                  <a
-                    key={subItem.href}
-                    href={subItem.href}
-                    className="flex items-center gap-2 text-sm py-1 transition-colors group"
-                    style={{ color: '#8B949E' }}
-                    onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
-                    onMouseLeave={(e) => e.currentTarget.style.color = '#8B949E'}
-                  >
-                    <span className="w-1 h-1 rounded-full bg-current opacity-50 group-hover:opacity-100 transition-opacity" />
-                    {t(subItem.labelKey)}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </aside>
         </main>
       </div>
     </div>

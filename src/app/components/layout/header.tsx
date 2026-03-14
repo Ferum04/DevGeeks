@@ -1,26 +1,83 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useState, useRef, useEffect } from "react";
-import { Box, Search, Plus, Bell, LogOut, Globe } from "lucide-react";
+import { Box, Search, LogOut, Globe, FileText } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { useLanguage } from "../../context/LanguageContext";
 
+const RAW_SEARCH_OPTIONS = [
+  { path: "/docs/introduction", labelKey: "docs.nav.introduction" },
+  { path: "/docs/introduction#getting-started", labelKey: "docs.layout.gettingStarted" },
+  { path: "/docs/introduction#key-concepts", labelKey: "docs.layout.keyConcepts" },
+  { path: "/docs/hardware-selection", labelKey: "docs.nav.hardwareSelection" },
+  { path: "/docs/hardware-selection#min-req", labelKey: "docs.hardware.minReq" },
+  { path: "/docs/hardware-selection#budget-options", labelKey: "docs.hardware.budgetOptions" },
+  { path: "/docs/hardware-selection#performance-comparison", labelKey: "docs.hardware.compare" },
+  { path: "/docs/proxmox-installation", labelKey: "docs.nav.proxmoxInstallation" },
+  { path: "/docs/proxmox-installation#step1", labelKey: "docs.proxmox.step1" },
+  { path: "/docs/proxmox-installation#step2", labelKey: "docs.proxmox.step2" },
+  { path: "/docs/proxmox-installation#step3", labelKey: "docs.proxmox.step3" },
+  { path: "/docs/proxmox-installation#step4", labelKey: "docs.proxmox.step4" },
+  { path: "/docs/musi-server", labelKey: "docs.nav.musicServer" },
+  { path: "/docs/musi-server#phase-1", labelKey: "docs.musi.phase1" },
+  { path: "/docs/musi-server#phase-2", labelKey: "docs.musi.phase2" },
+  { path: "/docs/musi-server#phase-3", labelKey: "docs.musi.phase3" },
+  { path: "/docs/musi-server#phase-4", labelKey: "docs.musi.phase4" },
+  { path: "/docs/musi-server#phase-5", labelKey: "docs.musi.phase5" },
+  { path: "/docs/musi-server#phase-6", labelKey: "docs.musi.phase6" },
+  { path: "/docs/musi-server#phase-7", labelKey: "docs.musi.phase7" },
+];
+
+const HighlightMatch = ({ text, highlight }: { text: string; highlight: string }) => {
+  if (!highlight.trim()) return <span>{text}</span>;
+  const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
+  return (
+    <span>
+      {parts.map((part, i) =>
+        part.toLowerCase() === highlight.toLowerCase() ?
+          <span key={i} className="bg-[#F85149]/30 text-[#FF7B72] rounded px-0.5">{part}</span> : <span key={i}>{part}</span>
+      )}
+    </span>
+  );
+};
+
 export function Header() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { user, logout } = useAuth();
   const { language, setLanguage, t } = useLanguage();
 
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const langMenuRef = useRef<HTMLDivElement>(null);
 
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const searchRef = useRef<HTMLFormElement>(null);
+
+  const filteredSearchOptions = RAW_SEARCH_OPTIONS
+    .map(opt => ({ ...opt, label: t(opt.labelKey) }))
+    .filter(opt => opt.label.toLowerCase().includes(searchTerm.toLowerCase()));
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
         setIsLangMenuOpen(false);
       }
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchFocused(false);
+      }
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim() && filteredSearchOptions.length > 0) {
+      navigate(filteredSearchOptions[0].path);
+      setSearchTerm('');
+      setIsSearchFocused(false);
+    }
+  };
 
   return (
     <header
@@ -69,22 +126,63 @@ export function Header() {
       </div>
 
       {location.pathname !== '/' && (
-        <div className="flex items-center gap-4">
-          {/* Search Bar (Visual Only) */}
-          <div
-            className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-md border"
-            style={{
-              borderColor: '#30363D',
-              background: '#0D1117',
-              width: '280px'
-            }}
-          >
-            <Search size={16} style={{ color: '#8B949E' }} />
-            <span style={{ color: '#8B949E' }} className="flex-1 text-xs">Type <kbd className="border border-gray-700 rounded px-1 ml-1 mr-1">/</kbd> to search</span>
+        <>
+          {/* Centered Search Bar */}
+          <div className="flex-1 flex justify-center px-4 relative z-50">
+            <form
+              ref={searchRef}
+              onSubmit={handleSearch}
+              className="hidden md:flex relative items-center gap-2 px-3 py-1.5 rounded-md border w-full max-w-md transition-colors focus-within:border-[#58A6FF]"
+              style={{
+                borderColor: '#30363D',
+                background: '#0D1117',
+              }}
+            >
+              <Search size={16} style={{ color: '#8B949E' }} />
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                placeholder={t("header.documentation") + "..."}
+                className="flex-1 text-sm bg-transparent border-none outline-none focus:ring-0 text-[#E6EDF3] placeholder-[#8B949E]"
+              />
+              <kbd className="hidden lg:block border border-gray-700 rounded px-1.5 text-xs text-[#8B949E]">/</kbd>
+
+              {/* Autocomplete Dropdown */}
+              {isSearchFocused && searchTerm.trim() !== '' && (
+                <div
+                  className="absolute top-full left-0 right-0 mt-2 py-2 rounded-md shadow-lg border overflow-hidden max-h-80 overflow-y-auto"
+                  style={{ background: '#161B22', borderColor: '#30363D' }}
+                >
+                  {filteredSearchOptions.length > 0 ? (
+                    filteredSearchOptions.map((opt) => (
+                      <button
+                        key={opt.path}
+                        type="button"
+                        onClick={() => {
+                          setSearchTerm('');
+                          setIsSearchFocused(false);
+                          navigate(opt.path);
+                        }}
+                        className="w-full flex items-center gap-3 text-left px-4 py-2 hover:bg-[#21262D] transition-colors group"
+                      >
+                        <FileText size={16} className="text-[#8B949E] group-hover:text-[#58A6FF] transition-colors" />
+                        <span className="text-sm text-[#E6EDF3] font-medium tracking-wide">
+                          <HighlightMatch text={opt.label} highlight={searchTerm} />
+                        </span>
+                      </button>
+                    ))
+                  ) : (
+                    <div className="px-4 py-3 text-sm text-[#8B949E] text-center italic">No guides found for "{searchTerm}"</div>
+                  )}
+                </div>
+              )}
+            </form>
           </div>
 
           {/* Right Icons */}
-          <div className="flex items-center gap-3" style={{ color: '#8B949E' }}>
+          <div className="flex items-center gap-3 ml-auto" style={{ color: '#8B949E' }}>
             {/* Language Switcher Dropdown */}
             <div className="relative" ref={langMenuRef}>
               <button
@@ -156,14 +254,6 @@ export function Header() {
               )}
             </div>
 
-            <button className="hover:text-white transition-colors">
-              <Plus size={20} />
-            </button>
-            <button className="hover:text-white transition-colors relative">
-              <Bell size={20} />
-              <span className="absolute top-0 right-0 w-2 h-2 rounded-full" style={{ background: '#2F81F7' }}></span>
-            </button>
-            {/* Avatar Placeholder */}
             {/* Avatar / Logout */}
             {user ? (
               <div className="flex items-center gap-4">
@@ -197,7 +287,7 @@ export function Header() {
               </Link>
             )}
           </div>
-        </div>
+        </>
       )}
     </header>
   );
