@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { Home, ChevronRight, ChevronLeft, Server, HardDrive, Box, Music, Film, Menu, X } from "lucide-react";
+import { Home, ChevronRight, ChevronLeft, Server, HardDrive, Box, Music, Film, Folder, Download, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Header } from "../components/layout/header";
 import { Footer } from "../components/layout/footer";
@@ -60,6 +60,30 @@ const navItems = [
       { labelKey: "docs.movie.step3", href: "#step-3" },
       { labelKey: "docs.movie.step4", href: "#step-4" },
       { labelKey: "docs.movie.step5", href: "#step-5" },
+    ]
+  },
+  {
+    path: "/docs/file-server",
+    labelKey: "docs.nav.fileServer",
+    icon: Folder,
+    subItems: [
+      { labelKey: "docs.file.step1", href: "#step-1" },
+      { labelKey: "docs.file.step2", href: "#step-2" },
+      { labelKey: "docs.file.step3", href: "#step-3" },
+      { labelKey: "docs.file.step4", href: "#step-4" },
+      { labelKey: "docs.file.step5", href: "#step-5" },
+    ]
+  },
+  {
+    path: "/docs/torrent-server",
+    labelKey: "docs.nav.torrentServer",
+    icon: Download,
+    subItems: [
+      { labelKey: "docs.torrent.step1", href: "#step-1" },
+      { labelKey: "docs.torrent.step2", href: "#step-2" },
+      { labelKey: "docs.torrent.step3", href: "#step-3" },
+      { labelKey: "docs.torrent.step4", href: "#step-4" },
+      { labelKey: "docs.torrent.step5", href: "#step-5" },
     ]
   },
 ];
