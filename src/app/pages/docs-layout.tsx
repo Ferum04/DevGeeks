@@ -20,9 +20,9 @@ const navItems = [
     labelKey: "docs.nav.hardwareSelection",
     icon: HardDrive,
     subItems: [
-      { labelKey: "docs.hardware.minReq", href: "#min-req" },
-      { labelKey: "docs.hardware.budgetOptions", href: "#budget-options" },
-      { labelKey: "docs.hardware.compare", href: "#performance-comparison" },
+      { labelKey: "docs.hardware.subtitle", href: "#spectrum" },
+      { labelKey: "docs.hardware.mySetup", href: "#my-setup" },
+      { labelKey: "docs.hardware.what", href: "#what-to-choose" },
     ]
   },
   {

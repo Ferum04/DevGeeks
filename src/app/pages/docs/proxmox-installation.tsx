@@ -66,19 +66,23 @@ export function ProxmoxInstallation() {
               Size: 1.2 GB | SHA256: verified
             </p>
           </div>
-          <button
-            className="flex items-center gap-2 px-4 py-2 rounded transition-colors"
+          <a
+            href="https://www.proxmox.com/en/products/proxmox-virtual-environment/get-started"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 rounded transition-colors no-underline"
             style={{
               background: '#238636',
               color: '#FFFFFF',
-              border: 'none'
+              border: 'none',
+              display: 'inline-flex'
             }}
             onMouseEnter={(e) => e.currentTarget.style.background = '#2EA043'}
             onMouseLeave={(e) => e.currentTarget.style.background = '#238636'}
           >
             <Download size={16} />
             <span className="text-sm">{t('docs.proxmox.download')}</span>
-          </button>
+          </a>
         </div>
       </section>
 
