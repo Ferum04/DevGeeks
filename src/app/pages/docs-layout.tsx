@@ -1,5 +1,5 @@
 import { Outlet, Link, useLocation } from "react-router";
-import { Home, ChevronRight, ChevronLeft, Server, HardDrive, Box, Music, Menu, X } from "lucide-react";
+import { Home, ChevronRight, ChevronLeft, Server, HardDrive, Box, Music, Film, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Header } from "../components/layout/header";
 import { Footer } from "../components/layout/footer";
@@ -48,6 +48,18 @@ const navItems = [
       { labelKey: "docs.musi.phase5", href: "#phase-5" },
       { labelKey: "docs.musi.phase6", href: "#phase-6" },
       { labelKey: "docs.musi.phase7", href: "#phase-7" },
+    ]
+  },
+  {
+    path: "/docs/movie-server",
+    labelKey: "docs.nav.movieServer",
+    icon: Film,
+    subItems: [
+      { labelKey: "docs.movie.step1", href: "#step-1" },
+      { labelKey: "docs.movie.step2", href: "#step-2" },
+      { labelKey: "docs.movie.step3", href: "#step-3" },
+      { labelKey: "docs.movie.step4", href: "#step-4" },
+      { labelKey: "docs.movie.step5", href: "#step-5" },
     ]
   },
 ];

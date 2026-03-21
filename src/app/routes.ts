@@ -6,6 +6,7 @@ import { HardwareSelection } from "./pages/docs/hardware-selection";
 import { ProxmoxInstallation } from "./pages/docs/proxmox-installation";
 import { Register } from "./pages/register";
 import { MusiServer } from "./pages/docs/musi-server";
+import { MovieServer } from "./pages/docs/movie-server";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: "hardware-selection", Component: HardwareSelection },
       { path: "proxmox-installation", Component: ProxmoxInstallation },
       { path: "musi-server", Component: MusiServer },
+      { path: "movie-server", Component: MovieServer },
     ],
   },
 ]);
